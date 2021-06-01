@@ -4,6 +4,8 @@
 
 #include "io.h"
 
+#define LIMIT 3
+
 
 using namespace std;
 
@@ -16,61 +18,59 @@ bool is_integer(string buffer) {
 	return true;
 }
 
-void is_valid_date(string buffer) {
-	int offset;
-	//int day, month, year;
-	string part;
-	//getline(cin, str1);
-	//string str2;
-	//string str3;
+bool is_valid_date(string buffer) {
+	std::string date;
+	std::string array[LIMIT];
+	size_t position = 0;
+	int index = 0;
+	bool isLeap = false;
+	bool isValidDate = true;
+	int day, month, year;
 
-	offset = buffer.find('.', 0);
-	if (offset < 0) {
-		return false;
+	std::cin >> date;
+
+	while ((position = date.find('.')) != std::string::npos) {
+		std::string token = date.substr(0, position);
+		array[index] = token;
+		date.erase(0, position + 1);
+		index += 1;
 	}
+	array[index] = date;
 
-	part = buffer.substr(0, offset);
-	if (is_integer(part) == false) {
-		return false;
+	day = atoi(array[0].c_str());
+	month = atoi(array[1].c_str());
+	year = atoi(array[2].c_str());
+
+	if (year % 4 == 0) {
+		isLeap = true;
 	}
-
-	int day = stoi(part);
-
-	if (day < 0 || day > 31) {
-		return false;
+	if (day < 1 || day > 31) {
+		isValidDate = false;
 	}
-
-
-	buffer.erase(0, offset + 1);
-
-
-	day = str1.find('.', 0);
-	str3 = str1.substr(0, day);
-	month = stoi(str3);
-	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-		if (day <= 31) {
-			cout << "true";
+	if (month < 1 || month > 12) {
+		isValidDate = false;
+	}
+	if (month == 2 && day > 29 && isLeap == true) {
+		isValidDate = false;
+	}
+	if (month == 2 && day > 28 && isLeap == false) {
+		isValidDate = false;
+	}
+	if (month == 4 || month == 6 || month == 9 || month == 11) {
+		if (day > 30) {
+			isValidDate = false;
 		}
-		else {
-			cout << "false";
-		}
+	}
+
+	if (isValidDate) {
+		return true;
 	}
 	else {
-		if (month == 2 || month == 4 || month == 6 || month == 9 || month == 11) {
-			if (day <= 30) {
-				cout << "true";
-			}
-			else {
-				cout << "false";
-			}
-		}
-		else {
-			cout << "false";
-		}
+		return false;
 	}
-
-	return true;
 }
+
+	
 
 int get_n() {
 
@@ -90,12 +90,9 @@ int get_n() {
 		if (n < 1 || n > 10) {
 			cout << "Need to enter an integer number from 1 to 10! Please, try again: " << endl;
 			continue;
-		}
-		
+		}	
 		return n;
-
 	}
-
 }
 
 string get_name() {
@@ -118,7 +115,6 @@ string get_name() {
 			cout << "You need to enter a username. For example, \"Ivan\". Please, try again: " << endl;
 			cin >> buffer;
 		}
-
 		return buffer;
 	}
 }
@@ -165,19 +161,100 @@ int get_id() {
 	}
 }
 
-int get_Birthday() {
+string get_birthday() {
 
 	while (true) {
 		string buffer;
-		cout << "Please, enter your date of birthday: " << endl;
+		cout << "Please, enter date of birthday: " << endl;
 
 		cin >> buffer;
-		if () {
-			cout << "Incorrect date! Please, try again: " << endl;
-			cin >> buffer;
+
+		if (is_valid_date(buffer) == false) {
+			cout << "Incorrect date! The date should be in the form of \"31.02.2020\".Please, try again: " << endl;
+			continue;
 		}
+
 		return buffer;
 	}
+}
+
+string get_date() {
+
+	while (true) {
+		string buffer;
+		cout << "Please, enter date: " << endl;
+
+		cin >> buffer;
+
+		if (is_valid_date(buffer) == false) {
+			cout << "Incorrect date! The date should be in the form of \"31.02.2020\".Please, try again: " << endl;
+			continue;
+		}
+
+		return buffer;
+	}
+}
+
+double get_salary() {
+	while (true) {
+		string buffer;
+		cout << "Please, enter Salary: " << endl;
+
+		cin >> buffer;
+
+		if (is_integer(buffer) == false) {
+			cout << "Incorrect input! The salary should be in the form of \"222.22\". Please, try again: " << endl;
+			continue;
+		}
+		double salary = stoi(buffer);
+
+		return salary;
+	}
+}
+
+string get_hometown() {
+	while (true) {
+		string buffer;
+		cout << "Please, enter hometown: " << endl;
+
+		cin >> buffer;
+
+		for (int i = 0; i < buffer.length(); i++) {
+			if (std::isalpha(buffer[i])) {
+				continue;
+			}
+			cout << "You need to enter hometown. For example, \"Moscow\". Please, try again: " << endl;
+			cin >> buffer;
+		}
+
+		return buffer;
+	}
+}
+
+string get_country() {
+	while (true) {
+		string buffer;
+		cout << "Please, enter country: " << endl;
+
+		cin >> buffer;
+
+		for (int i = 0; i < buffer.length(); i++) {
+			if (std::isalpha(buffer[i])) {
+				continue;
+			}
+			cout << "You need to enter country. For example, \"Russia\". Please, try again: " << endl;
+			cin >> buffer;
+		}
+
+		return buffer;
+	}
+}
+
+string get_workplace() {
+		string buffer;
+		cout << "Please, enter workplase: " << endl;
+
+		cin >> buffer;
 }
 
 User get_user() {
@@ -187,7 +264,15 @@ User get_user() {
 	user.Name = get_name();
 	user.Surname = get_surname();
 	user.IdNumber = get_id();
-	user.Birthday = get_Birthday();
+	user.Birthday = get_birthday();
+	user.Date = get_date();
+	user.Salary = get_salary();
+	user.Hometown = get_hometown();
+	user.Country = get_country();
+	user.Workplace = get_workplace();
+
+
+
 
 
 	return user;
