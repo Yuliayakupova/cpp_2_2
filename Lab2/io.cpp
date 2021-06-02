@@ -4,8 +4,6 @@
 
 #include "io.h"
 
-#define LIMIT 3
-
 
 using namespace std;
 
@@ -19,55 +17,28 @@ bool is_integer(string buffer) {
 }
 
 bool is_valid_date(string buffer) {
-	std::string date;
-	std::string array[LIMIT];
-	size_t position = 0;
-	int index = 0;
-	bool isLeap = false;
-	bool isValidDate = true;
+	
 	int day, month, year;
-
-	std::cin >> date;
-
-	while ((position = date.find('.')) != std::string::npos) {
-		std::string token = date.substr(0, position);
-		array[index] = token;
-		date.erase(0, position + 1);
-		index += 1;
+	sscanf(buffer.c_str(), "%d-%d-%d", &day, &month, &year);
+	
+	int max_day;
+	switch (month)
+	{
+	case 1:  max_day = 31; break;
+	case 2:  year % 4 != 0 ? max_day = 28 : max_day = 29; break;
+	case 3:  max_day = 31; break;
+	case 4:  max_day = 30; break;
+	case 5:  max_day = 31; break;
+	case 6:  max_day = 30; break;
+	case 7:  max_day = 31; break;
+	case 8:  max_day = 31; break;
+	case 9:  max_day = 30; break;
+	case 10: max_day = 31; break;
+	case 11: max_day = 30; break;
+	case 12: max_day = 31; break;
+	return;
 	}
-	array[index] = date;
-
-	day = atoi(array[0].c_str());
-	month = atoi(array[1].c_str());
-	year = atoi(array[2].c_str());
-
-	if (year % 4 == 0) {
-		isLeap = true;
-	}
-	if (day < 1 || day > 31) {
-		isValidDate = false;
-	}
-	if (month < 1 || month > 12) {
-		isValidDate = false;
-	}
-	if (month == 2 && day > 29 && isLeap == true) {
-		isValidDate = false;
-	}
-	if (month == 2 && day > 28 && isLeap == false) {
-		isValidDate = false;
-	}
-	if (month == 4 || month == 6 || month == 9 || month == 11) {
-		if (day > 30) {
-			isValidDate = false;
-		}
-	}
-
-	if (isValidDate) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return true;
 }
 
 	
@@ -168,7 +139,7 @@ string get_birthday() {
 		cout << "Please, enter date of birthday: " << endl;
 
 		cin >> buffer;
-
+		
 		if (is_valid_date(buffer) == false) {
 			cout << "Incorrect date! The date should be in the form of \"31.02.2020\".Please, try again: " << endl;
 			continue;
@@ -253,8 +224,8 @@ string get_country() {
 string get_workplace() {
 		string buffer;
 		cout << "Please, enter workplase: " << endl;
-
 		cin >> buffer;
+		return buffer;
 }
 
 User get_user() {
