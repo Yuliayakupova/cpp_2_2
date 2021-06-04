@@ -19,8 +19,8 @@ bool is_integer(string buffer) {
 bool is_valid_date(string buffer) {
 	
 	int day, month, year;
-	sscanf(buffer.c_str(), "%d-%d-%d", &day, &month, &year);
-	
+	//sscanf(buffer.c_str(), "%d-%d-%d", &day, &month, &year);
+	return true;
 	int max_day;
 	switch (month)
 	{
@@ -36,7 +36,7 @@ bool is_valid_date(string buffer) {
 	case 10: max_day = 31; break;
 	case 11: max_day = 30; break;
 	case 12: max_day = 31; break;
-	return;
+	return false;
 	}
 	return true;
 }
@@ -241,10 +241,6 @@ User get_user() {
 	user.Hometown = get_hometown();
 	user.Country = get_country();
 	user.Workplace = get_workplace();
-
-
-
-
 
 	return user;
 

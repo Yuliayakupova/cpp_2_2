@@ -2,11 +2,15 @@
 #include <vector>  
 
 #include "User.h"
+#include "display.h"
 #include "io.h"
+
+
+#include "menu.h"
 
 int main()
 {
-
+    
     vector<User> users;
 
     int n = get_n();
@@ -15,10 +19,12 @@ int main()
 
         users.push_back(user);
     }
+    
+    display_users(&users);
+    
+    
+    
+    display_menu(&users);
 
-    //display_users(users);
-
-
-    //....
 }
 
