@@ -1,10 +1,6 @@
 #include <iostream>
-#include <string>
 #include "io.h"
-#include "User.h"
-#include "io.cpp"
 #include "display.h"
-
 #include "menu_search.h"
 
 using namespace std;
@@ -70,7 +66,6 @@ void menu_search(vector <User>* users) {
 
 				break;
 			case 7:
-				cout << "Thank you! Bye!" << std::endl;
 				return;
 			break;
 		}

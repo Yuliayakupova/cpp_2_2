@@ -33,9 +33,6 @@
     <ClCompile Include="menu_search.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="menu_remove.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="io.h">
@@ -51,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="menu_search.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="menu_remove.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

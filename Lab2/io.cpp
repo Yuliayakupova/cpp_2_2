@@ -1,7 +1,3 @@
-#include <iostream>
-#include <string>
-#include <cmath>
-
 #include "io.h"
 
 

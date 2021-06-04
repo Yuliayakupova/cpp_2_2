@@ -4,7 +4,6 @@
 #include "io.h"
 
 #include "menu.h"
-
 #include "menu_search.h"
 
 void display_menu(vector <User>* users){
@@ -40,7 +39,7 @@ void display_menu(vector <User>* users){
 			break;
 			case 3:
 				cout << "Thank you! Bye!" << endl;
-				exit;
+				return;
 			break;
 		}
 	}

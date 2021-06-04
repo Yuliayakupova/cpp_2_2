@@ -21,9 +21,6 @@ int main()
     }
     
     display_users(&users);
-    
-    
-    
     display_menu(&users);
 
 }
