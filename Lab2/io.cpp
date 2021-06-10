@@ -1,5 +1,5 @@
 #include "io.h"
-
+#include <regex>
 
 using namespace std;
 
@@ -13,28 +13,11 @@ bool is_integer(string buffer) {
 }
 
 bool is_valid_date(string buffer) {
-	
-	int day, month, year;
-	//sscanf(buffer.c_str(), "%d-%d-%d", &day, &month, &year);
-	return true;
-	int max_day;
-	switch (month)
-	{
-	case 1:  max_day = 31; break;
-	case 2:  year % 4 != 0 ? max_day = 28 : max_day = 29; break;
-	case 3:  max_day = 31; break;
-	case 4:  max_day = 30; break;
-	case 5:  max_day = 31; break;
-	case 6:  max_day = 30; break;
-	case 7:  max_day = 31; break;
-	case 8:  max_day = 31; break;
-	case 9:  max_day = 30; break;
-	case 10: max_day = 31; break;
-	case 11: max_day = 30; break;
-	case 12: max_day = 31; break;
-	return false;
-	}
-	return true;
+
+	regex pattern("\\d{2}[-]\\d{2}[-]\\d{4}");
+	smatch result;
+
+	return regex_search(buffer, result, pattern);
 }
 
 	

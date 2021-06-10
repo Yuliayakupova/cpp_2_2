@@ -2,6 +2,8 @@
 #define USER_H
 
 #include <string>
+#include <vector> 
+
 using namespace std;
 
 struct User {
@@ -16,5 +18,6 @@ struct User {
 	string Workplace;
 };
 
+void save_to_file(vector <User>* users);
 
 #endif

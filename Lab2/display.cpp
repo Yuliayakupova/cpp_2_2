@@ -12,7 +12,6 @@ void display_users(vector <User> *users)
 	cout << "=====================================================================================================" << endl;
 
 	for(int i = 0; i < users->size(); i++){
-		//проверяет диапазон начиная с i и до конца users
 		display_user(&users->at(i));
 	}
 }

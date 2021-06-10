@@ -5,7 +5,8 @@
 
 #include "menu.h"
 #include "menu_search.h"
-
+#include "menu_remove.h"
+ 
 void display_menu(vector <User>* users){
 
 
@@ -33,9 +34,7 @@ void display_menu(vector <User>* users){
 				menu_search(users);
 			break;
 			case 2:
-				//cout << "REMOVE by fields" << endl;
-				//menu_remove();
-
+				menu_remove(users);
 			break;
 			case 3:
 				cout << "Thank you! Bye!" << endl;
